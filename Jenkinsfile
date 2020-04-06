@@ -18,8 +18,6 @@ pipeline {
     stage('Image Build') {
       steps {
         sh 'echo "build_${params.OS_Type}"'
-      }
-      steps {
         sh 'echo "${params.Target_Image}-ami.json"'
       }
 
