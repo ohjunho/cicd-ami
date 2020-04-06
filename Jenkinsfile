@@ -18,9 +18,8 @@ pipeline {
       steps {
         sh '''
           b=`echo "${branch}" | awk -F " " '{ gsub("/", "_"); print $1" "$2" "$3" "$4 }'`
-          //echo "cicd-ami_${b}"
-          //dir "/var/lib/jenkins/workspace/cicd-ami_${b}/packer/build_${OS_Type}"
-          /opt/packer/packer build /var/lib/jenkins/workspace/cicd-ami_${b}/packer/build_${OS_Type}/${Target_Image}-ami.json
+          echo "${b}"
+          /opt/packer/packer build "/var/lib/jenkins/workspace/cicd-ami_${b}/packer/build_${OS_Type}/${Target_Image}-ami.json"
         '''
       }
     }
