@@ -18,8 +18,8 @@ pipeline {
     stage('Image Build') {
       steps {
         script {
-          def b = "cicd-ami_"+"$branch".replaceAll('/', '_')
-          echo '${b}'
+          def b = "$branch".replaceAll('/', '_')
+          echo "cicd-ami_${b}"
           //cd /var/lib/jenkins/workspace/${b}/packer/build_${OS_Type} 
           ///opt/packer/packer build ${Target_Image}-ami.json
         
