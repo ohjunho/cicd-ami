@@ -20,7 +20,7 @@ pipeline {
         script {
           def b = "$branch".replaceAll('/', '_')
           echo "cicd-ami_${b}"
-          //cd /var/lib/jenkins/workspace/${b}/packer/build_${OS_Type} 
+          cd "/var/lib/jenkins/workspace/cicd-ami_${b}/packer/build_${OS_Type}"
           ///opt/packer/packer build ${Target_Image}-ami.json
         
         }
