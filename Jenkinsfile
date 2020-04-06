@@ -15,7 +15,7 @@ choice = input message: 'Choose your option', parameters: [string(defaultValue: 
 echo $choice
 '''
       }
-        
+    }     
         
     stage('Image Build') {
       steps {
