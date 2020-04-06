@@ -26,7 +26,6 @@ pipeline {
 // cd /var/lib/jenkins/workspace/cicd-ami_master/packer/build_${params.OS_Type}
 // /opt/packer/packer build ${params.Target_Image}-ami.json
 
-      }
     }
 
   }
