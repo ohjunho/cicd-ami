@@ -1,33 +1,28 @@
+  
 pipeline {
   agent any
+  
+  parameters {
+    string(name: 'branch', defaultValue: 'master', description: '디플로이할 대상 브랜치를 입력하세요.')
+    choice(name: 'OS_Type', choices: ['awslinux2', 'ubuntu'], description: 'OS를 선택하세요.')
+    choice(name: 'Target_Image', choices: ['gitlab', 'jenkins', 'sonarqube'], description: 'AMI를 만들 대상을 선택하세요.')
+  }
+  
   stages {
     stage('Git clone') {
       steps {
-        git(url: 'https://github.com/opsflex/ami.git', branch: 'master', changelog: true)
-      }
-    }
-
-    stage('Test') {
-      steps {
-        echo "CHOICE: ${params.CHOICE}"
+        git(url: 'https://github.com/opsflex/ami.git', branch: "${params.branch}", changelog: true)
       }
     }
 
     stage('Image Build') {
       steps {
         sh '''
-cd /var/lib/jenkins/workspace/cicd-ami_master/packer/build_ubuntu
-/opt/packer/packer build gitlab-ami.json
+cd /var/lib/jenkins/workspace/ami_master/packer/build_${params.OS_Type}
+/opt/packer/packer build ${params.Target_Image}-ami.json
         '''
       }
     }
 
-  }
-  parameters {
-    string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
-    text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
-    booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
-    choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
-    password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
   }
 }
