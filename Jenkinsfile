@@ -18,7 +18,7 @@ pipeline {
     stage('Image Build') {
       steps {
         sh '''
-cd /var/lib/jenkins/workspace/cicd-ami_master/packer/build_${OS_Type}
+cd /var/lib/jenkins/workspace/cicd-ami_${branch}/packer/build_${OS_Type}
 /opt/packer/packer build ${Target_Image}-ami.json
         '''
       }
