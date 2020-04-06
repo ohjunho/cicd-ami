@@ -19,7 +19,8 @@ pipeline {
       steps {
         sh '''
 ls -al /var/lib/jenkins/workspace/
-cd /var/lib/jenkins/workspace/cicd-ami_${branch}/packer/build_${OS_Type}
+b=${branch}.replace("/", "_")
+cd /var/lib/jenkins/workspace/cicd-ami_${b}/packer/build_${OS_Type}
 /opt/packer/packer build ${Target_Image}-ami.json
         '''
       }
