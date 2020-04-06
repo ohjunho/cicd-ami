@@ -11,21 +11,17 @@ pipeline {
   stages {
     stage('Git clone') {
       steps {
-        git(url: 'https://github.com/opsflex/ami.git', branch: "${params.branch}", changelog: true)
+        git(url: 'https://github.com/opsflex/ami.git', branch: "${branch}", changelog: true)
       }
     }
 
     stage('Image Build') {
       steps {
         sh '''
-        echo "${OS_Type}"
+cd /var/lib/jenkins/workspace/cicd-ami_master/packer/build_${OS_Type}
+/opt/packer/packer build ${Target_Image}-ami.json
         '''
-        //sh 'echo "${params.Target_Image}-ami.json"'
       }
-
-// cd /var/lib/jenkins/workspace/cicd-ami_master/packer/build_${params.OS_Type}
-// /opt/packer/packer build ${params.Target_Image}-ami.json
-
     }
 
   }
