@@ -20,7 +20,7 @@ pipeline {
         sh '''
         b="${branch}";
         echo "${b}"
-        echo "${b}".replace("/", "_")
+        echo "${b}".replace('/', '_')
         
         '''
       }
