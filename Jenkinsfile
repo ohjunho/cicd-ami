@@ -17,7 +17,7 @@ pipeline {
     stage('Image Build') {
       steps {
         sh '''
-          b=`echo "${branch}" | awk -F " " '{ gsub("/", "_"); print $1" "$2" "$3" "$4 }'`
+          b=`echo "${branch}" | awk -F " " '{ gsub("/", "_"); print $1}'`
           echo "${b}"
           /opt/packer/packer build "/var/lib/jenkins/workspace/cicd-ami_${b}/packer/build_${OS_Type}/${Target_Image}-ami.json"
         '''
