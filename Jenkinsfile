@@ -1,7 +1,6 @@
 pipeline {
   agent any
   stages {
-    
     stage('Git clone') {
       steps {
         git(url: 'https://github.com/opsflex/ami.git', branch: 'master', changelog: true)
@@ -11,12 +10,12 @@ pipeline {
     stage('Test') {
       steps {
         sh '''
-choice = input message: 'Choose your option', parameters: [string(defaultValue: 'Option 1', description: 'What am I choosing', name: 'Comment')]
+choice = input message: \'Choose your option\', parameters: [string(defaultValue: \'Option 1\', description: \'What am I choosing\', name: \'Comment\')]
 echo $choice
 '''
       }
-    }     
-        
+    }
+
     stage('Image Build') {
       steps {
         sh '''
