@@ -17,10 +17,7 @@ pipeline {
 
     stage('Image Build') {
       steps {
-        sh 'def b=(${branch}.replace("/", "_"))'
-        sh '''
-echo "${b}"
-        '''
+        sh 'echo (${branch}.replace("/", "_"))'
       }
     }
 
