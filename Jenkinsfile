@@ -21,12 +21,10 @@ pipeline {
           def b = "$branch".replaceAll('/', '_')
           echo "cicd-ami_${b}"
           dir "/var/lib/jenkins/workspace/cicd-ami_${b}/packer/build_${OS_Type}"
-        }
-        sh '''
           pwd
           ls -al
           ///opt/packer/packer build ${Target_Image}-ami.json
-        '''
+        }
       }
     }
 
