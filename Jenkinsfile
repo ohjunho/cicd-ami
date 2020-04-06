@@ -17,9 +17,10 @@ pipeline {
 
     stage('Image Build') {
       steps {
-        sh '''
-        echo "$branch".replaceAll('/', '_')
-        '''
+        script {
+          echo "$branch".replaceAll('/', '_')
+        
+        }
       }
     }
 
