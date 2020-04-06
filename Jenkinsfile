@@ -24,7 +24,6 @@ pipeline {
         }
         catch(ex){
           echo '${ex}'
-          throw
         }
       }
     }
