@@ -11,6 +11,7 @@ pipeline {
       steps {
         sh '''
 cd /var/lib/jenkins/workspace/ami_master/packer/build_ubuntu
+pwd
 /opt/packer/packer build gitlab-ami.json
         '''
       }
