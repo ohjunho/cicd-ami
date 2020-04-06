@@ -18,6 +18,9 @@ pipeline {
     stage('Image Build') {
       steps {
         sh '''
+echo "build_${params.OS_Type}"
+echo "${params.Target_Image}-ami.json"
+
 cd /var/lib/jenkins/workspace/cicd-ami_master/packer/build_${params.OS_Type}
 /opt/packer/packer build ${params.Target_Image}-ami.json
         '''
