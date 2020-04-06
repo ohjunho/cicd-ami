@@ -13,6 +13,7 @@ pipeline {
 choice = input message: \'Choose your option\', parameters: [string(defaultValue: \'Option 1\', description: \'What am I choosing\', name: \'Comment\')]
 echo $choice
 '''
+        input(message: 'os?', ok: 'ubuntu')
       }
     }
 
